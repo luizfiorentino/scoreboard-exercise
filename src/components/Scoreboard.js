@@ -30,12 +30,22 @@ export default function Scoreboard() {
     set_sort_by(event.target.value);
   };
 
+  const incrementScore = (id) => {
+    console.log("Selected player", id);
+  };
+
   return (
     <div className="Scoreboard">
       <p>Player's Scores:</p>
       <ul>
         {players_sorted.map((player) => (
-          <Player key={player.id} name={player.name} score={player.score} />
+          <Player
+            key={player.id}
+            id={player.id}
+            name={player.name}
+            score={player.score}
+            incrementScore={incrementScore}
+          />
         ))}
       </ul>
       <p>
