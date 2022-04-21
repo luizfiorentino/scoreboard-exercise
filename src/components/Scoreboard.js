@@ -80,7 +80,11 @@ export default function Scoreboard() {
           <option value="score"> Score </option>
         </select>
       </p>
-      <AddPlayerForm />
+      <AddPlayerForm
+        addPlayer={(name) => {
+          console.log("Let's add a new player with the name:", name);
+        }}
+      />
     </div>
   );
 }
