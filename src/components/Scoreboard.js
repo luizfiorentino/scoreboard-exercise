@@ -42,9 +42,25 @@ export default function Scoreboard() {
     console.log("Selected player", id);
   };
 
+  function reset_scores() {
+    const players_with_score_zero = [...players].map((player) => {
+      return { ...player, score: (player.score = 0) };
+    });
+    set_players(players_with_score_zero);
+  }
+
+  function randomize_scores() {
+    const players_with_random_scores = [...players].map((player) => {
+      const randomScore = parseInt(Math.random() * 100);
+      return { ...player, score: randomScore };
+    });
+    set_players(players_with_random_scores);
+  }
+
   return (
     <div className="Scoreboard">
       <p>Player's Scores:</p>
+      <button onClick={reset_scores}>Reset scores</button>
       <ul>
         {players_sorted.map((player) => (
           <Player
@@ -56,6 +72,7 @@ export default function Scoreboard() {
           />
         ))}
       </ul>
+      <button onClick={randomize_scores}>Randomize the scores</button>
       <p>
         Sort by:{" "}
         <select onChange={change_sorting} value={sort_by}>
