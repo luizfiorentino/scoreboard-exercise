@@ -31,6 +31,14 @@ export default function Scoreboard() {
   };
 
   const incrementScore = (id) => {
+    const new_players_array = players.map((player) => {
+      if (player.id === id) {
+        return { ...player, score: player.score + 1 };
+      } else {
+        return player;
+      }
+    });
+    set_players(new_players_array);
     console.log("Selected player", id);
   };
 
