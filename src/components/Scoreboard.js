@@ -57,6 +57,27 @@ export default function Scoreboard() {
     set_players(players_with_random_scores);
   }
 
+  const addPlayer = (name) => {
+    console.log("Let's add a player with the name:", name);
+    const new_player = { id: players.length + 1, name: name, score: 0 };
+    const new_players_array = [...players, new_player];
+    set_players(new_players_array);
+  };
+
+  /* This also works
+  const addPlayer = (name) => {
+    console.log("Let's add a new player whose name is:", name);
+    set_players([
+      ...players,
+      {
+        id: players.length + 1,
+        name,
+        score: 0,
+      },
+    ]);
+  };
+
+  */
   return (
     <div className="Scoreboard">
       <p>Player's Scores:</p>
@@ -80,11 +101,7 @@ export default function Scoreboard() {
           <option value="score"> Score </option>
         </select>
       </p>
-      <AddPlayerForm
-        addPlayer={(name) => {
-          console.log("Let's add a new player with the name:", name);
-        }}
-      />
+      <AddPlayerForm addPlayer={addPlayer} />
     </div>
   );
 }
